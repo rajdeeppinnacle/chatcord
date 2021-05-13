@@ -1,7 +1,7 @@
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-const { formatMessage, saveMessage } = require("./utils/messages");
+const { formatMessage } = require("./utils/messages");
 
 const {
   userJoin,
