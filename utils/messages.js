@@ -1,11 +1,23 @@
 const moment = require('moment');
+const con = require("../db.js")
 
-function formatMessage(username, text) {
+function formatMessage(empId,empName, text) {
   return {
-    username,
+    empId,
+    empName,
     text,
     time: moment().format('h:mm a')
   };
 }
 
-module.exports = formatMessage;
+function saveMessage(sender,receiver,message){
+  con.query(`insert into chats(senderId,receiverId,message) values(?) `,[[sender,receiver,message]],(err,result)=>{
+
+    if(err){
+      console.log(err)
+    }
+
+  })
+}
+
+module.exports = {formatMessage,saveMessage};
