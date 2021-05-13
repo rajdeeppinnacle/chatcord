@@ -78,5 +78,9 @@ io.on("connection", (socket) => {
   });
 });
 
+server.use("/",(req,res)=>{
+  res.send("Hi All")
+})
+
 const PORT = process.env.PORT || 4000;
-server.listen();
+server.listen(PORT,()=>console.log("Listening on port "+PORT));
