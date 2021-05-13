@@ -8,4 +8,4 @@ function formatMessage(empId,empName, text) {
     time: moment().format('h:mm a')
   };
 }
-module.exports = {formatMessage,saveMessage};
+module.exports = {formatMessage};
