@@ -79,9 +79,9 @@ const server = http.createServer(app);
 //   });
 // });
 
-server.get("/",(req,res)=>{
+app.get("/",(req,res)=>{
   res.send("Hi All")
 })
 
 const PORT = process.env.PORT || 4000;
-server.listen(PORT,()=>console.log("Listening on port "+PORT));
+app.listen(PORT,()=>console.log("Listening on port "+PORT));
