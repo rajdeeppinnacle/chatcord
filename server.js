@@ -13,11 +13,11 @@ const {
 
 const app = express();
 
+var cors = require('cors')
+app.use(cors({origin:"http://localhost:4200"}))
+
 const server = http.createServer(app);
 const io = socketio(server);
-
-var cors = require('cors')
-io.use(cors({origin:"http://localhost:4200"}))
 
 const botName = "ChatCord Bot";
 
