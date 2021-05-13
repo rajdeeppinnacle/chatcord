@@ -1,15 +1,15 @@
 const http = require("http");
 const express = require("express");
-// const socketio = require("socket.io");
-// const { formatMessage, saveMessage } = require("./utils/messages");
+const socketio = require("socket.io");
+const { formatMessage, saveMessage } = require("./utils/messages");
 
-// const {
-//   userJoin,
-//   getCurrentUser,
-//   userLeave,
-//   getRoomUsers,
-//   getAllUsers
-// } = require("./utils/users");
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers,
+  getAllUsers
+} = require("./utils/users");
 
 const app = express()
 
@@ -84,4 +84,4 @@ app.get("/",(req,res)=>{
 })
 
 const PORT = process.env.PORT || 4000;
-server.listen(PORT,()=>console.log("Listening on port "+PORT));
+app.listen(PORT,()=>console.log("Listening on port "+PORT));
