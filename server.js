@@ -7,12 +7,10 @@ const {
   userJoin,
   getCurrentUser,
   userLeave,
-  getRoomUsers,
   getAllUsers
 } = require("./utils/users");
 
 const app = express()
-
 const server = http.createServer(app);
 
 const io = socketio(server);
@@ -77,8 +75,8 @@ io.on("connection", (socket) => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.send("Hi All")
+app.get("/",(req,res)=>{
+  res.send("<h1>Hello World")
 })
 
 const PORT = process.env.PORT || 4000;
