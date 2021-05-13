@@ -78,7 +78,7 @@ io.on("connection", (socket) => {
   });
 });
 
-app.get("/",(req,res)=>{
+server.get("/",(req,res)=>{
   res.send("Hi All")
 })
 
