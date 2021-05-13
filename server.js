@@ -14,9 +14,11 @@ const {
 const app = express();
 
 const server = http.createServer(app);
-const io = socketio(server);
-
-io.origins("http://localhost:4200");
+const io = socketio(server, {
+  cors: {
+    origin: "http://localhost:4200"
+  }
+});
 
 const botName = "ChatCord Bot";
 
@@ -53,7 +55,7 @@ io.on("connection", (socket) => {
   socket.on("chatMessage", ({ msg, receiver }) => {
     const user = getCurrentUser(socket.id);
 
-    if(!user){
+    if (!user) {
       return
     }
 
