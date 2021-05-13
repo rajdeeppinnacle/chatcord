@@ -14,6 +14,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+/* CORS */
+var cors = require('cors')
+app.use(cors({ origin: "*", credentials: true }))
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
