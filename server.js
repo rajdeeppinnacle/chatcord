@@ -11,13 +11,11 @@ const {
   getAllUsers
 } = require("./utils/users");
 
-const app = express();
-
-var cors = require('cors')
-app.use(cors({origin:"http://localhost:4200"}))
+const app = express()
 
 const server = http.createServer(app);
 const io = socketio(server);
+io.origins(["http://localhost:4200"]);
 
 const botName = "ChatCord Bot";
 
