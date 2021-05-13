@@ -1,82 +1,83 @@
 const http = require("http");
 const express = require("express");
-const socketio = require("socket.io");
-const { formatMessage, saveMessage } = require("./utils/messages");
+// const socketio = require("socket.io");
+// const { formatMessage, saveMessage } = require("./utils/messages");
 
-const {
-  userJoin,
-  getCurrentUser,
-  userLeave,
-  getRoomUsers,
-  getAllUsers
-} = require("./utils/users");
+// const {
+//   userJoin,
+//   getCurrentUser,
+//   userLeave,
+//   getRoomUsers,
+//   getAllUsers
+// } = require("./utils/users");
 
 const app = express()
 
 const server = http.createServer(app);
-const io = socketio(server);
-io.origins(["http://localhost:4200"]);
 
-const botName = "ChatCord Bot";
+// const io = socketio(server);
+// io.origins(["http://localhost:4200"]);
 
-// Run when client connects
-io.on("connection", (socket) => {
-  socket.on("joinRoom", ({ empName, empId, businessId }) => {
+// const botName = "ChatCord Bot";
 
-    if (!empName || !empId || !businessId) {
-      return;
-    }
+// // Run when client connects
+// io.on("connection", (socket) => {
+//   socket.on("joinRoom", ({ empName, empId, businessId }) => {
 
-    const user = userJoin(socket.id, empName, empId, businessId);
-    socket.join(empId);
-    socket.join("B-" + businessId);
+//     if (!empName || !empId || !businessId) {
+//       return;
+//     }
 
-    // Welcome current user
-    //socket.emit("message", formatMessage(0, botName, "Welcome to ChatCord!"));
+//     const user = userJoin(socket.id, empName, empId, businessId);
+//     socket.join(empId);
+//     socket.join("B-" + businessId);
 
-    // Broadcast when a user connects
-    // socket.broadcast
-    //   .to(user.room)
-    //   .emit(
-    //     "message",
-    //     formatMessage(botName, `${user.username} has joined the chat`)
-    //   );
+//     // Welcome current user
+//     //socket.emit("message", formatMessage(0, botName, "Welcome to ChatCord!"));
 
-    // Send users and room info
-    io.to("B-" + businessId).emit("roomUsers", {
-      users: getAllUsers(),
-    });
-  });
+//     // Broadcast when a user connects
+//     // socket.broadcast
+//     //   .to(user.room)
+//     //   .emit(
+//     //     "message",
+//     //     formatMessage(botName, `${user.username} has joined the chat`)
+//     //   );
 
-  // Listen for chatMessage
-  socket.on("chatMessage", ({ msg, receiver }) => {
-    const user = getCurrentUser(socket.id);
+//     // Send users and room info
+//     io.to("B-" + businessId).emit("roomUsers", {
+//       users: getAllUsers(),
+//     });
+//   });
 
-    if (!user) {
-      return
-    }
+//   // Listen for chatMessage
+//   socket.on("chatMessage", ({ msg, receiver }) => {
+//     const user = getCurrentUser(socket.id);
 
-    //saveMessage(user.empId, receiver, msg)
-    io.to(receiver).emit("message", formatMessage(user.empId, user.empName, msg));
-  });
+//     if (!user) {
+//       return
+//     }
 
-  // Runs when client disconnects
-  socket.on("disconnect", () => {
-    const user = userLeave(socket.id);
+//     //saveMessage(user.empId, receiver, msg)
+//     io.to(receiver).emit("message", formatMessage(user.empId, user.empName, msg));
+//   });
 
-    if (user) {
-      // io.to(user.room).emit(
-      // "message",
-      // formatMessage(0, botName, `${user.username} has left the chat`)
-      //);
+//   // Runs when client disconnects
+//   socket.on("disconnect", () => {
+//     const user = userLeave(socket.id);
 
-      // Send users and room info
-      io.to("B-" + user.businessId).emit("roomUsers", {
-        users: getAllUsers(),
-      });
-    }
-  });
-});
+//     if (user) {
+//       // io.to(user.room).emit(
+//       // "message",
+//       // formatMessage(0, botName, `${user.username} has left the chat`)
+//       //);
+
+//       // Send users and room info
+//       io.to("B-" + user.businessId).emit("roomUsers", {
+//         users: getAllUsers(),
+//       });
+//     }
+//   });
+// });
 
 server.get("/",(req,res)=>{
   res.send("Hi All")
