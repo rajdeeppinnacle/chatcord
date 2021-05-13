@@ -18,8 +18,6 @@ const server = http.createServer(app);
 const io = socketio(server);
 io.origins(["http://localhost:4200"]);
 
-const botName = "ChatCord Bot";
-
 // Run when client connects
 io.on("connection", (socket) => {
   socket.on("joinRoom", ({ empName, empId, businessId }) => {
@@ -79,9 +77,9 @@ io.on("connection", (socket) => {
   });
 });
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
   res.send("Hi All")
 })
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT,()=>console.log("Listening on port "+PORT));
+server.listen(PORT, () => console.log("Listening on port " + PORT));
