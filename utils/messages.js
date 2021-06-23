@@ -1,5 +1,4 @@
 const moment = require('moment');
-const con = require("../db.js")
 
 function formatMessage(empId,empName, text) {
   return {
@@ -10,14 +9,4 @@ function formatMessage(empId,empName, text) {
   };
 }
 
-function saveMessage(sender,receiver,message){
-  con.query(`insert into 3_Happiest_chats(senderId,receiverId,message) values(?) `,[[sender,receiver,message]],(err,result)=>{
-
-    if(err){
-      console.log(err);
-    }
-
-  })
-}
-
-module.exports = {formatMessage,saveMessage};
+module.exports = {formatMessage};

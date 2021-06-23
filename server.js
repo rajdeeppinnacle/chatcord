@@ -1,7 +1,7 @@
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-const { formatMessage,saveMessage } = require("./utils/messages");
+const { formatMessage } = require("./utils/messages");
 
 const {
   userJoin,
@@ -54,7 +54,6 @@ io.on("connection", (socket) => {
       return
     }
 
-    saveMessage(user.empId, receiver, msg)
     io.to(receiver).emit("message", formatMessage(user.empId, user.empName, msg));
   });
 
