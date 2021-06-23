@@ -14,7 +14,7 @@ function saveMessage(sender,receiver,message){
   con.query(`insert into 3_Happiest_chats(senderId,receiverId,message) values(?) `,[[sender,receiver,message]],(err,result)=>{
 
     if(err){
-      console.log(err)
+      console.log(err);
     }
 
   })
