@@ -14,7 +14,7 @@ const app = express()
 const server = http.createServer(app);
 
 const io = socketio(server);
-io.origins(["http://localhost:4200"]);
+io.origins(["https://www.theleadpanda.com"]);
 
 // Run when client connects
 io.on("connection", (socket) => {
