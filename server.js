@@ -76,7 +76,7 @@ io.on("connection", (socket) => {
 });
 
 app.get("/",(req,res)=>{
-  res.send("<h1>Hello World")
+  res.send("<h1>Hello World");
 })
 
 const PORT = process.env.PORT || 4000;
